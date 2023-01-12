@@ -49,6 +49,11 @@ Require linked account to play:
     Require all of the listed roles: false # jeśli false, tylko tylko jedna rola jest wymagana
     Kick message: "&cMusisz być subksrybentem na Twitch, aby tutaj zagrać."
 
+  Blacklist:
+    Enabled: false
+    Blacklisted roles: ["00000000000000000", "00000000000000000", "00000000000000000"]
+    Kick message: "&cTwoja rola znajduje się na czarnej liście na tym serwerze."
+
   Messages:
     DiscordSRV still starting: "&cObecnie nie można sprawdzić statusu łącza, ponieważ serwer nadal łączy się z Discordem.\n\nSpróbuj ponownie za minutę."
     Not in server: "&cObecnie nie jesteś częścią naszego serwera Discord.\n\nDołącz przez {INVITE}!"

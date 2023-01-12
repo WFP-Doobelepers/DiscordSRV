@@ -48,6 +48,11 @@ Require linked account to play:
     Require all of the listed roles: false # falseの場合、上記の役割の1つのみが必要です
     Kick message: "&cプレイするには、Twitchに登録する必要があります。"
 
+  Blacklist:
+    Enabled: false
+    Blacklisted roles: ["00000000000000000", "00000000000000000", "00000000000000000"]
+    Kick message: "&cこのサーバーでブラックリストに登録されている役割があります。"
+
   Messages:
     DiscordSRV still starting: "&cサーバーがまだDiscordに接続しているため、現在リンクステータスを確認できません。\n\nしばらくしてからもう一度お試しください。"
     Not in server: "&c現在、Discordサーバーの一部ではありません。\n\n{INVITE}に参加してください！"

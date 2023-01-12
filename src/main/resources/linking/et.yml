@@ -49,6 +49,11 @@ Require linked account to play:
     Require all of the listed roles: false # when false, only one of the above roles is required
     Kick message: "&cMängimiseks pead olema Twitchis tellija."
 
+  Blacklist:
+    Enabled: false
+    Blacklisted roles: ["00000000000000000", "00000000000000000", "00000000000000000"]
+    Kick message: "&cTeil on roll, mis on selles serveris mustas nimekirjas."
+
   Messages:
     DiscordSRV still starting: "&cÜhenduse kontrollimine pole hetkel saadaval, kuna server loob endiselt Discordiga ühendust.\n\nProovi minuti pärast uuesti."
     Not in server: "&cSa ei ole hetkel meie Discordi serveri liige.\n\nLiitu saidil {INVITE}!"

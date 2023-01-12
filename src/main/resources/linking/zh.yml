@@ -49,6 +49,11 @@ Require linked account to play:
     Require all of the listed roles: false # 如果为false，则仅需要上述角色之一
     Kick message: "&c您必须订阅Twitch才能玩。"
 
+  Blacklist:
+    Enabled: false
+    Blacklisted roles: ["00000000000000000", "00000000000000000", "00000000000000000"]
+    Kick message: "&c您的角色在此服务器上被列入黑名单。"
+
   Messages:
     DiscordSRV still starting: "&c当前无法检查链接状态，因为服务器仍在连接到Discord。\n\n请稍后重试。"
     Not in server: "&c您目前不属于我们的Discord服务器。\n\n加入{INVITE}！"

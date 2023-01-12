@@ -201,6 +201,35 @@ public class RequireLinkModule implements Listener {
                     disallow.accept(AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST.name(), MessageUtil.translateLegacy(getSubscriberRoleKickMessage()));
                 }
             }
+
+            List<String> blacklistedRoleIds = DiscordSRV.config().getStringList("Require linked account to play.Blacklist.Blacklisted roles");
+            if (isBlacklistEnabled() && !blacklistedRoleIds.isEmpty()) {
+                int matches = 0;
+
+                for (String blacklistedRoleId : blacklistedRoleIds) {
+                    if (StringUtils.isBlank(blacklistedRoleId)) {
+                        continue;
+                    }
+
+                    Role role = null;
+                    try {
+                        role = DiscordUtil.getJda().getRoleById(blacklistedRoleId);
+                    } catch (Throwable ignored) {}
+                    if (role == null) {
+                        continue;
+                    }
+
+                    Member member = role.getGuild().getMemberById(discordId);
+                    if (member != null && member.getRoles().contains(role)) {
+                        matches++;
+                    }
+                }
+
+                if (matches > 0) {
+                    DiscordSRV.debug(Debug.REQUIRE_LINK, "Player " + playerName + " has a blacklisted role, denying login");
+                    disallow.accept(AsyncPlayerPreLoginEvent.Result.KICK_WHITELIST.name(), MessageUtil.translateLegacy(getBlacklistedRoleKickMessage()));
+                }
+            }
         } catch (Exception exception) {
             DiscordSRV.error("Failed to check player: " + playerName, exception);
             disallow.accept(AsyncPlayerPreLoginEvent.Result.KICK_OTHER.name(), MessageUtil.translateLegacy(getUnknownFailureKickMessage()));
@@ -245,6 +274,9 @@ public class RequireLinkModule implements Listener {
     private boolean isSubRoleRequired() {
         return DiscordSRV.config().getBoolean("Require linked account to play.Subscriber role.Require subscriber role to join");
     }
+    private boolean isBlacklistEnabled() {
+        return DiscordSRV.config().getBoolean("Require linked account to play.Blacklist.Enabled");
+    }
     private Set<String> getBypassNames() {
         return new HashSet<>(DiscordSRV.config().getStringList("Require linked account to play.Bypass names"));
     }
@@ -256,6 +288,9 @@ public class RequireLinkModule implements Listener {
     }
     private String getSubscriberRoleKickMessage() {
         return DiscordSRV.config().getString("Require linked account to play.Subscriber role.Kick message");
+    }
+    private String getBlacklistedRoleKickMessage() {
+        return DiscordSRV.config().getString("Require linked account to play.Blacklist.Kick message");
     }
     private String getUnknownFailureKickMessage() {
         return DiscordSRV.config().getString("Require linked account to play.Messages.Failed for unknown reason");

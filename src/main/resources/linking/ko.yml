@@ -48,6 +48,11 @@ Require linked account to play:
     Require all of the listed roles: false # false로 설정하면, 위 설정값을 한가지로 설정해야 합니다.
     Kick message: "&c플레이하려면 트위치 방송을 구독하고 있어야 합니다."
 
+  Blacklist:
+    Enabled: false
+    Blacklisted roles: ["00000000000000000", "00000000000000000", "00000000000000000"]
+    Kick message: "&c이 서버에서 블랙리스트에 오른 역할이 있습니다."
+
   Messages:
     DiscordSRV still starting: "&c아직 서버가 디스코드와 완전히 연결되지 않아 연결 상태를 확인할 수 없습니다.\n\n잠시 후 다시 시도하세요."
     Not in server: "&c당신은 아직 디스코드 서버에 참가하지 않은 것 같습니다.\n\n{INVITE}를 통해 참가하세요!"
